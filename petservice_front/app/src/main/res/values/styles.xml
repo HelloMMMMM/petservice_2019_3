@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="QMUI.Compat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/qmui_config_color_blue</item>
+        <item name="colorPrimaryDark">@color/qmui_config_color_blue</item>
+        <item name="colorAccent">@color/qmui_config_color_blue</item>-->
+    </style>
+    
+    <style name="SplashStyle" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/drawable_splash</item>
+    </style>
+
+</resources>

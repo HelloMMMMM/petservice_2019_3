@@ -1,0 +1,64 @@
+.pageForm {
+  display: block;
+  margin-top: 14px;
+}
+.pageInput,
+.pageButton {
+  padding: 0px 10px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 3px;
+  border: 1px solid #bbb;
+  display: inline-block;
+  vertical-align: middle;
+}
+.pageInput {
+  width:64px;
+  height: 28px;
+  text-align:center;
+  background: transparent;
+  border: 1px solid #000;
+  outline: 0;
+}
+.pageButton {
+  background: linear-gradient(#f46652 0%, #dd5846 100%);
+  border-color: #dd5846;
+  color: white;
+  margin-left:10px;
+}
+.pageSkip {
+  background-style:none;
+  display: inline-block;
+  background: transparent url('monotone_arrow_left_small.png') no-repeat -10px -10px;
+  text-indent: -999em;
+  background-size: 40px;
+  opacity: 0.8;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+.pageNext {
+  background-image: url('monotone_arrow_right.png');
+}
+.pagination {
+  width:100%;
+  text-align: center;
+}
+@media (max-width: 550px) {
+  .pagination {
+    width: auto;
+  }
+  .pageForm {
+    display: block;
+    margin-top: 20px;
+    align:center;
+  }
+  .pageInput {
+    margin: 0;
+  }
+}
+.totalPageNum{
+	font-size: 14px;
+	margin-left:10px;
+	margin-right:8px;
+}

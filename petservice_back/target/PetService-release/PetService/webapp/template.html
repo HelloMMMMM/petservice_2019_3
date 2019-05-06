@@ -1,0 +1,216 @@
+#define title()
+<base href="/" />
+<title>宠物店铺</title>
+<link href="./pageination/css/style.css" rel="stylesheet">
+#end #define sidebar(viewId)
+<div class="sidebar">
+	<nav class="sidebar-nav">
+		<ul class="nav">
+			<li class="nav-title">导航栏</li>
+			<!-- 会员卡,超级管理员可见 -->
+			#if(store.getStoreType()==2)
+			<li class="nav-item nav-dropdown"><a
+				class="nav-link nav-dropdown-toggle"> <i
+					class="icon icon-target"></i> 会员卡信息 <i class="fa fa-caret-left"></i>
+			</a>
+				<ul class="nav-dropdown-items">
+					<li class="nav-item"><a href="/index/vipList"
+						class="nav-link #@isActive(viewId,5)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 会员卡列表
+					</a></li>
+					<li class="nav-item"><a href="/index/vipForm"
+						class="nav-link #@isActive(viewId,6)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 添加/修改会员卡
+					</a></li>
+				</ul></li>
+			#else if(store.getStoreType()==1)
+			<!-- 商品 -->
+			<li class="nav-item nav-dropdown"><a
+				class="nav-link nav-dropdown-toggle"> <i
+					class="icon icon-target"></i> 商品信息 <i class="fa fa-caret-left"></i>
+			</a>
+				<ul class="nav-dropdown-items">
+					<li class="nav-item"><a href="/index/goodsList"
+						class="nav-link #@isActive(viewId,1)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 商品列表
+					</a></li>
+					<li class="nav-item"><a href="/index/goodsForm"
+						class="nav-link #@isActive(viewId,2)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 添加/修改商品
+					</a></li>
+				</ul></li>
+			<!-- 服务 -->
+			<li class="nav-item nav-dropdown"><a
+				class="nav-link nav-dropdown-toggle"> <i
+					class="icon icon-target"></i> 服务信息 <i class="fa fa-caret-left"></i>
+			</a>
+				<ul class="nav-dropdown-items">
+					<li class="nav-item"><a href="/index/serviceList"
+						class="nav-link #@isActive(viewId,3)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 服务列表
+					</a></li>
+					<li class="nav-item"><a href="/index/serviceForm"
+						class="nav-link #@isActive(viewId,4)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 添加/修改服务
+					</a></li>
+				</ul></li>
+			<!-- 宠物饲养常识 -->
+			<li class="nav-item nav-dropdown"><a
+				class="nav-link nav-dropdown-toggle"> <i
+					class="icon icon-target"></i> 宠物饲养常识 <i class="fa fa-caret-left"></i>
+			</a>
+				<ul class="nav-dropdown-items">
+					<li class="nav-item"><a href="/index/articleList"
+						class="nav-link #@isActive(viewId,7)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 文章列表
+					</a></li>
+					<li class="nav-item"><a href="/index/articleForm"
+						class="nav-link #@isActive(viewId,8)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 添加文章
+					</a></li>
+				</ul></li>
+			<!-- 订单管理 -->
+			<li class="nav-item nav-dropdown"><a
+				class="nav-link nav-dropdown-toggle"> <i
+					class="icon icon-target"></i> 订单管理 <i class="fa fa-caret-left"></i>
+			</a>
+				<ul class="nav-dropdown-items">
+					<li class="nav-item"><a href="/index/orderList"
+						class="nav-link #@isActive(viewId,9)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 订单列表
+					</a></li>
+				</ul></li>
+			<!-- 宠物评选 -->
+			<li class="nav-item nav-dropdown"><a
+				class="nav-link nav-dropdown-toggle"> <i
+					class="icon icon-target"></i> 宠物评选 <i class="fa fa-caret-left"></i>
+			</a>
+				<ul class="nav-dropdown-items">
+					<li class="nav-item"><a href="/index/selectionPhase"
+						class="nav-link #@isActive(viewId,12)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 评选周期管理
+					</a></li>
+					<li class="nav-item"><a href="/index/petList"
+						class="nav-link #@isActive(viewId,10)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 宠物列表
+					</a></li>
+					<li class="nav-item"><a href="/index/petForm"
+						class="nav-link #@isActive(viewId,11)"> <i
+							class="icon icon-target" style="opacity: 0;"></i> 添加/修改宠物
+					</a></li>
+				</ul></li>
+			#end
+		</ul>
+	</nav>
+</div>
+#end 
+
+#define isActive(viewId,myId) 
+#if(viewId == myId) 
+active 
+#end 
+#end
+
+#define pagination(page,totalPage,path,keyWord,totalPage)
+#if(totalPage>0)
+<form action="#(path)" method="GET">
+	<div class="card">
+		#set(keyWordString=keyWord==null?"":"&keyWord="+keyWord)
+		#set(prePage=page-1,nextPage=page+1) 
+		#if(totalPage<=1)
+			#set(prePageHref="javascript:void(0);")
+			#set(nextPageHref="javascript:void(0);") 
+		#else 
+			#if(page==1)
+			#set(prePageHref="javascript:void(0);")
+			#set(nextPageHref=path+"?page="+nextPage+keyWordString) 
+			#else if(page==totalPage)
+			#set(prePageHref=path+"?page="+prePage+keyWordString)
+			#set(nextPageHref="javascript:void(0);") 
+			#else
+			#set(prePageHref=path+"?page="+prePage+keyWordString)
+			#set(nextPageHref=path+"?page="+nextPage+keyWordString) 
+			#end 
+		#end
+		<div class="card-body" style="text-align: center;">
+			<a class="pagePrev pageSkip" href="#(prePageHref)"></a> <input
+				id="pageInput" name="page" class="pageInput" type="text"
+				maxlength="5" value="#(page)"
+				oninput="value=value.replace(/[^\d]/g,'')"> <span
+				class="totalPageNum">/&nbsp;&nbsp;#(totalPage)</span> <a
+				class="pageNext pageSkip" href="#(nextPageHref)"></a> <input
+				type="hidden" name="totalPage" value="#(totalPage)" /> <input
+				type="hidden" name="keyWord" value="#(keyWord)" />
+			<button class="pageButton" type="submit">Go</button>
+		</div>
+	</div>
+</form>
+#end
+#end 
+
+#define searchArea(placeholder,path,keyWord,totalPage)
+<form method="GET" action="#(path)">
+	<div class="card">
+		<div class="card-body">
+			<div class="col-md-4">
+				<div class="input-group">
+					<input type="text" name="keyWord" class="form-control"
+						placeholder="#(placeholder)" value="#(keyWord)"> <span
+						class="input-group-btn">
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-search"></i> 搜索
+						</button>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+#end 
+
+#define phaseNumSelector(phaseList,selectedPhaseNum)
+<form method="GET" action="/index/petList">
+	<div class="card">
+		<div class="card-body">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="single-select">评选期号</label> 
+					<select id="single-select" class="form-control" name="keyWord"> 
+					#for(phase : phaseList)
+						#if(selectedPhaseNum)
+							#if(selectedPhaseNum==phase.getPhaseNum())
+							<option selected="selected" value="#(phase.getPhaseNum())">#(phase.getPhaseNum())</option>
+							#else
+							<option value="#(phase.getPhaseNum())">#(phase.getPhaseNum())</option>
+							#end
+						#else 
+							#if(phase.getIsEnd()==1)
+							<option selected="selected" value="#(phase.getPhaseNum())">#(phase.getPhaseNum())</option>
+							#else
+							<option value="#(phase.getPhaseNum())">#(phase.getPhaseNum())</option>
+							#end
+						#end
+					#end
+					</select>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<button type="submit" class="btn btn-primary">查看该期参选宠物</button>
+			</div>
+		</div>
+	</div>
+</form>
+#end
+
+#define emptyData(totalPage)
+	#if(totalPage==0)
+		暂无内容 
+	#end
+#end 
+
+#define showMsg(errorMsg,successMsg) 
+#if(errorMsg??)
+<div class="alert alert-danger">#(errorMsg)</div>
+#end #if(successMsg??)
+<div class="alert alert-success">#(successMsg)</div>
+#end #end

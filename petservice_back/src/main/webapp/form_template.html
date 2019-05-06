@@ -1,0 +1,419 @@
+#define goodsForm(goodsTypes,isAdd,goods)
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header bg-light">
+					#if(isAdd)
+						商品信息添加
+					#else
+						商品信息修改
+					#end
+					</div>
+					<div class="card-body">
+						#set(action=isAdd?"/index/goodsAdd":"/index/goodsUpdate")
+						<form method="POST" action="#(action)"
+							enctype="multipart/form-data">
+							<input type="hidden" name="isAdd" value="#(isAdd)">
+							<input type="hidden" name="goods.id" value="#(goods.id??)">
+							#if(!isAdd)
+							<input type="hidden" name="goodsImg" value="#(goods.goodsImg==null?goodsImg:goods.goodsImg)">
+							#end
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="normal-input" class="form-control-label">商品名称
+										</label> <input id="normal-input" class="form-control"
+											placeholder="请输入商品名称" name="goods.goodsName" value="#(goods.goodsName??)">
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">商品价格</label>
+										<input id="placeholder-input" class="form-control"
+											type="number" placeholder="请输入商品价格" name="goods.goodsPrice"
+											value="#(goods.goodsPrice??)">
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="single-select">商品类型</label> <select
+											id="single-select" class="form-control" name="goods.goodsType"> #for(goodsType : goodsTypes)
+											#if(goodsType.getGoodsTypeName()==goods.goodsType??)
+												<option selected="selected" value="#(goodsType.getGoodsTypeName())">#(goodsType.getGoodsTypeName())</option>
+											#else
+											    <option value="#(goodsType.getGoodsTypeName())">#(goodsType.getGoodsTypeName())</option>
+											#end
+											#end
+										</select>
+									</div>
+								</div>
+							</div>
+							#if(!isAdd)
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<img src="#(goods.goodsImg==null?goodsImg:goods.goodsImg)" class="img-thumbnail" style="width:auto;height:100px;">
+									</div>
+								</div>
+							</div>
+							#end
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">商品图片</label>
+										<input id="placeholder-input" class="form-control" type="file"
+											name="goods.goodsImg">
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<button class="btn btn-primary" type="submit">提交</button>
+									</div>
+								</div>
+							</div>
+						</form>
+						#@showMsg(errorMsg,successMsg)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+#end #define serviceForm(isAdd,service)
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header bg-light">
+					#if(isAdd)
+						服务信息添加
+					#else
+						服务信息修改
+					#end
+					</div>
+					<div class="card-body">
+						#set(action=isAdd?"/index/serviceAdd":"/index/serviceUpdate")
+						<form method="POST" action="#(action)">
+							<input type="hidden" name="isAdd" value="#(isAdd)">
+							<input type="hidden" name="service.id" value="#(service.id??)">
+							#if(!isAdd)
+							<input type="hidden" name="startTime" value="#(service.startTime==null?startTime:service.startTime)">
+							<input type="hidden" name="endTime" value="#(service.endTime==null?endTime:service.endTime)">
+							#end
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="normal-input" class="form-control-label">服务类型
+										</label> <input type="name" name="service.serviceType" class="form-control" value="#(service.serviceType??)" 
+										placeholder="请输入服务类型">
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">服务最低价格</label>
+										<input class="form-control" type="number" name="service.minPrice" value="#(service.minPrice??)"
+											placeholder="请输入服务最低价格">
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">服务最高价格</label>
+										<input type="number" class="form-control" name="service.maxPrice" value="#(service.maxPrice??)"
+											placeholder="请输入服务最高价格">
+									</div>
+								</div>
+							</div>
+							#if(!isAdd)
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">当前服务可预约开始时间</label>
+										<span>#(service.startTime==null?startTime:service.startTime)</span>
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">当前服务可预约结束时间</label>
+										<span>#(service.endTime==null?endTime:service.endTime)</span>
+									</div>
+								</div>
+							</div>
+							#end
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">服务可预约开始时间</label>
+										<input type="time" class="form-control" name="startTimeString"
+											placeholder="请输入服务可预约开始时间">
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">服务可预约结束时间</label>
+										<input type="time" class="form-control" name="endTimeString"
+											placeholder="请输入服务可预约结束时间">
+									</div>
+								</div>
+							</div>
+							<input type="time" style="display:none;"  name="tempTimeString">
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<button class="btn btn-primary">提交</button>
+									</div>
+								</div>
+							</div>
+						</form>
+						#@showMsg(errorMsg,successMsg)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+#end 
+
+#define vipForm(isAdd,vip)
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header bg-light">
+					#if(isAdd)
+						会员卡信息添加
+					#else
+						会员卡信息修改
+     				#end
+					</div>
+					<div class="card-body">
+						#set(action=isAdd?"/index/vipAdd":"/index/vipUpdate")
+						<form method="POST" action="#(action)">
+							<input type="hidden" name="isAdd" value="#(isAdd)">
+							<input type="hidden" name="vip.id" value="#(vip.getId()??)">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="normal-input" class="form-control-label">会员卡价格
+										</label> <input type="text" class="form-control" placeholder="请输入会员卡名称"
+										name="vip.name" value="#(vip.name??)">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="normal-input" class="form-control-label">会员卡价格
+										</label> <input type="number" class="form-control" placeholder="请输入会员卡价格"
+										name="vip.price" value="#(vip.price??)">
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">会员卡优惠描述</label>
+										<textarea class="form-control" rows="6"
+											name="vip.desc" placeholder="请输入会员卡优惠描述">#(vip.desc??)</textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary">提交</button>
+									</div>
+								</div>
+							</div>
+						</form>
+						#@showMsg(errorMsg,successMsg)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+#end 
+
+#define articleForm(isAdd,article)
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header bg-light">
+					#if(isAdd)
+						文章添加
+					#else
+						文章修改
+     				#end
+					</div>
+					<div class="card-body">
+						#set(action=isAdd?"/index/articleAdd":"/index/articleUpdate")
+						<form method="POST" action="#(action)">
+							<input type="hidden" name="isAdd" value="#(isAdd)">
+							<input type="hidden" name="article.id" value="#(article.getId()??)">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="normal-input" class="form-control-label">文章标题
+										</label> <input class="form-control" placeholder="请输入文章标题"
+										type="name" name="article.articleTitle" value="#(article.articleTitle??)">
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">文章内容</label>
+										<textarea class="form-control" rows="6"
+											name="article.articleContent" placeholder="请输入文章内容">#(article.articleContent??)</textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary">提交</button>
+									</div>
+								</div>
+							</div>
+						</form>
+						#@showMsg(errorMsg,successMsg)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+#end 
+
+#define petForm(isAdd,phase,selection)
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header bg-light">
+					#if(isAdd)
+						参与评选的宠物添加
+					#else
+						参与评选的宠物修改
+     				#end
+					</div>
+					<div class="card-body">
+						#if(phase||selection)
+						#set(action=isAdd?"/index/petAdd":"/index/petUpdate")
+						<form method="POST" action="#(action)" enctype="multipart/form-data">
+							<input type="hidden" name="isAdd" value="#(isAdd??)">
+							<input type="hidden" name="selection.id" value="#(selection.id??)">
+							#if(!isAdd)
+							<input type="hidden" name="petImg" value="#(selection.petImg==null?petImg:selection.petImg)">
+							#else
+							<input type="hidden" name="phase.phaseNum" value="#(phase.getPhaseNum())">
+							#end
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										#set(phaseNum=phase==null?selection.getSelectionTime():phase.getPhaseNum())
+										<label for="normal-input" class="form-control-label">评选期数</label> 
+										<input class="form-control" readonly="readonly" value="#(phaseNum)">
+										<input type="hidden" name="selection.selectionTime" value="#(phaseNum)">
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">宠物名称</label>
+										<input class="form-control" name="selection.petName" value="#(selection.petName??)"
+											placeholder="请输入宠物名称">
+									</div>
+								</div>
+							</div>
+							#if(!isAdd)
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<img src="#(selection.petImg==null?petImg:selection.petImg)" class="img-thumbnail" style="width:auto;height:100px;">
+									</div>
+								</div>
+							</div>
+							#end
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="placeholder-input" class="form-control-label">宠物图片</label>
+										<input id="placeholder-input" class="form-control" type="file"
+											name="selection.petImg">
+									</div>
+								</div>
+							</div>
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="form-group">
+										<button class="btn btn-primary">提交</button>
+									</div>
+								</div>
+							</div>
+						</form>
+						#@showMsg(errorMsg,successMsg)
+						#else
+							当前暂未开展宠物评选活动，请先创建
+						#end
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+#end
+
+#define selectionPhase(phase)
+<div class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+     			<div class="card-header">
+     			#if(phase)
+     				当前正在进行第<font color="#FF0000" size="6">#(phase.getPhaseNum())</font>期评选
+     			#else
+     				当前暂无正在进行的评选，请创建
+     			#end
+     			</div>
+          			<div class="card-body">
+          			规则：<br>
+             		1.正在进行的宠物评选只能存在一期<br>
+             		2.当前评选未结束，需要结束才能开始下一期<br>
+             		3.开始一期宠物评选后，请添加参选宠物   <br>
+             		<br><br>
+             		#if(phase)
+             			<a href="/index/endPhase"><button type="button" class="btn btn-danger">结束本期评选</button></a>
+             		#else
+             			<a href="/index/createPhase"><button type="button" class="btn btn-primary">开始新一期评选</button></a>
+             		#end
+             		<br><br>
+             		#@showMsg(null,successMsg)
+          			</div>
+				</div>
+		</div>
+	</div>
+</div>
+#end

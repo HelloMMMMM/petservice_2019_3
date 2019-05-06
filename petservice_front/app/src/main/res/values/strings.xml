@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">宠物服务</string>
+
+    <string name="login">登录</string>
+    <string name="username_hint">8–16位用户名</string>
+    <string name="password_hint">6–12位密码</string>
+    <string name="has_account">没有账号?前去注册</string>
+    <string name="register">注册</string>
+    <string name="master_name_hint">8位以内宠物主人姓名</string>
+    <string name="master_address_hint">宠物主人地址</string>
+    <string name="master_phone_hint">宠物主人手机号</string>
+    <string name="pet_name_hint">8位以内宠物名称</string>
+    <string name="pet_kind_hint">宠物种类</string>
+    <string name="pet_age_hint">宠物年龄</string>
+    <string name="pet_type_hint">点击选择宠物类型</string>
+    <string name="pet_img_hint">点击选择宠物图片</string>
+
+    <string name="store_search_hint">请输入店铺名称或店铺地址</string>
+
+    <string name="edit_info_title">编辑资料</string>
+
+    <string name="buy">购买</string>
+    <string name="buy_service">申请服务</string>
+
+    <string name="contact_store">联系店铺</string>
+    <string name="add_store_star">star</string>
+    <string name="add_selection_star">投票</string>
+</resources>

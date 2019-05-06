@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+#@title()
+<link rel="stylesheet"
+	href="./vendor/simple-line-icons/css/simple-line-icons.css">
+<link rel="stylesheet"
+	href="./vendor/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+	<div class="page-wrapper flex-row align-items-center">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-5">
+					<div class="card p-4">
+						<div
+							class="card-header text-center text-uppercase h4 font-weight-light">
+							宠物店铺注册</div>
+
+						<form method="POST" action="/register/register">
+							<div class="card-body py-5">
+								<div class="form-group">
+									<label class="form-control-label">用户名</label> <input
+										type="name" class="form-control" name="registerBean.userName"
+										placeholder="16个字符以内的用户名" maxlength="16"
+										value="#(registerBean.userName??)">
+								</div>
+
+								<div class="form-group">
+									<label class="form-control-label">密码</label> <input
+										type="password" class="form-control"
+										name="registerBean.password" placeholder="6-12位密码"
+										maxlength="12" value="#(registerBean.password??)">
+								</div>
+
+								<div class="form-group">
+									<label class="form-control-label">核对密码</label> <input
+										type="password" class="form-control"
+										name="registerBean.confirmPassword" placeholder="再次输入密码"
+										maxlength="12" value="#(registerBean.confirmPassword??)">
+								</div>
+
+								<div class="form-group">
+									<label class="form-control-label">宠物店铺名称</label> <input
+										type="text" class="form-control" name="registerBean.storeName"
+										placeholder="16个字符以内的店铺名" maxlength="16"
+										value="#(registerBean.storeName??)">
+								</div>
+
+								<div class="form-group">
+									<label class="form-control-label">宠物店铺地址</label> <input
+										type="text" class="form-control"
+										name="registerBean.storeAddress" placeholder="32个字符以内的店铺地址"
+										maxlength="32" value="#(registerBean.storeAddress??)">
+								</div>
+
+								<div class="form-group">
+									<label class="form-control-label">联系方式</label> <input
+										type="phone" class="form-control" name="registerBean.phone"
+										placeholder="手机联系方式" maxlength="11"
+										value="#(registerBean.phone??)">
+								</div>
+								<div class="form-group">
+									<label class="form-control-label">qq号</label> <input
+										type="phone" class="form-control" name="registerBean.qq"
+										placeholder="qq号,用于和用户日常沟通" maxlength="11"
+										value="#(registerBean.qq??)">
+								</div>
+								<div class="form-group">
+									<label class="form-control-label"><a href="/">已有账号,前去登录</a></label>
+								</div>
+							</div>
+
+							<div class="card-footer">
+								<button type="submit" class="btn btn-success btn-block">注册</button>
+							</div>
+							#@showMsg(errorMsg,successMsg)
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="./vendor/jquery/jquery.min.js"></script>
+	<script src="./vendor/popper.js/popper.min.js"></script>
+	<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./vendor/chart.js/chart.min.js"></script>
+	<script src="./js/carbon.js"></script>
+	<script src="./js/demo.js"></script>
+</body>
+</html>

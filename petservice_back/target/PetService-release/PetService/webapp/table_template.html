@@ -1,0 +1,336 @@
+#define goodsTable(goodsList,page,totalPage,path,placeholder,keyWord)
+<div class="content">
+	<div class="row">
+		<div class="col-md-12">
+			#@searchArea(placeholder,path,keyWord,totalPage)
+			<div class="card">
+				<div class="card-header bg-light">商品列表</div>
+				<div class="card-body">
+					#if(totalPage>0)
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>商品ID</th>
+									<th>商品名称</th>
+									<th>商品价格</th>
+									<th>商品图片</th>
+									<th>商品类型</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								#for(goods : goodsList)
+								<tr>
+									<td>#(goods.getId())</td>
+									<td class="text-nowrap">#(goods.getGoodsName())</td>
+									<td>#(goods.getGoodsPrice())</td>
+									<td>
+										<img src="#(goods.getGoodsImg())" class="img-thumbnail" style="width:100px;height:100px;">
+									</td>
+									<td>#(goods.getGoodsType())</td>
+									<td><a href="/index/goodsDelete?id=#(goods.getId())"><button type="button" class="btn btn-danger">删除</button></a>
+									<form action="/index/goodsForm" method="POST" style="display: inline-block;">
+										<input type="hidden" name="goods.id" value="#(goods.getId())">
+										<input type="hidden" name="goods.goodsName" value="#(goods.getGoodsName())">
+										<input type="hidden" name="goods.goodsPrice" value="#(goods.getGoodsPrice())">
+										<input type="hidden" name="goods.goodsImg" value="#(goods.getGoodsImg())">
+										<input type="hidden" name="goods.goodsType" value="#(goods.getGoodsType())">
+										<button type="submit" class="btn btn-primary">修改</button></td>
+									</form>
+								</tr>
+								#end
+							</tbody>
+						</table>
+					</div>
+					#end
+					#@emptyData(totalPage)
+				</div>
+			</div>
+   			#@pagination(page,totalPage,path,keyWord,totalPage)
+		</div>
+	</div>
+</div>
+#end
+
+#define serviceTable(serviceList,page,totalPage,path,placeholder,keyWord)
+<div class="content">
+	<div class="row">
+		<div class="col-md-12">
+			#@searchArea(placeholder,path,keyWord,totalPage)
+			<div class="card">
+				<div class="card-header bg-light">服务列表</div>
+				<div class="card-body">
+					#if(totalPage>0)
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>服务ID</th>
+									<th>服务类型</th>
+									<th>服务价格区间</th>
+									<th>服务时间区间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								#for(service : serviceList)
+								<tr>
+									<td>#(service.getId())</td>
+									<td class="text-nowrap">#(service.getServiceType())</td>
+									<td>#(service.getMinPrice()) - #(service.getMaxPrice())</td>
+									<td>#(service.getStartTime()) - #(service.getEndTime())</td>
+									<td><a href="/index/serviceDelete?id=#(service.getId())"><button type="button" class="btn btn-danger">删除</button></a>
+									<form action="/index/serviceForm" method="POST" style="display: inline-block;">
+										<input type="hidden" name="service.id" value="#(service.getId())">
+										<input type="hidden" name="service.serviceType" value="#(service.getServiceType())">
+										<input type="hidden" name="service.minPrice" value="#(service.getMinPrice())">
+										<input type="hidden" name="service.maxPrice" value="#(service.getMaxPrice())">
+										<input type="hidden" name="service.startTime" value="#(service.getStartTime())">
+										<input type="hidden" name="service.endTime" value="#(service.getEndTime())">
+										<button type="submit" class="btn btn-primary">修改</button></form></td>
+								</tr>
+								#end
+							</tbody>
+						</table>
+					</div>
+					#end
+					#@emptyData(totalPage)
+				</div>
+			</div>
+			#@pagination(page,totalPage,path,keyWord,totalPage)
+		</div>
+	</div>
+</div>
+#end
+
+#define vipTable(vipList,page,totalPage,path,placeholder,keyWord)
+<div class="content">
+	<div class="row">
+		<div class="col-md-12">
+			#@searchArea(placeholder,path,keyWord,totalPage)
+			<div class="card">
+				<div class="card-header bg-light">会员卡列表</div>
+				<div class="card-body">
+					#if(totalPage>0)
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>会员卡ID</th>
+									<th>会员卡名称</th>
+									<th>会员卡价格</th>
+									<th>会员卡描述</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								#for(vip : vipList)
+								<tr>
+									<td>#(vip.getId())</td>
+									<td class="text-nowrap">#(vip.getName())</td>
+									<td>#(vip.getPrice())</td>
+									<td><p style="width:300px;">#(vip.getDesc())</p></td>
+									<td><a href="/index/vipDelete?id=#(vip.getId())"><button type="button" class="btn btn-danger">删除</button></a>
+									<form action="/index/vipForm" method="POST" style="display: inline-block;">
+										<input type="hidden" name="vip.id" value="#(vip.getId())">
+										<input type="hidden" name="vip.name" value="#(vip.getName())">
+										<input type="hidden" name="vip.price" value="#(vip.getPrice())">
+										<input type="hidden" name="vip.desc" value="#(vip.getDesc())">
+										<button type="submit" class="btn btn-primary">修改</button></form></td>
+								</tr>
+								#end
+							</tbody>
+						</table>
+					</div>
+					#end
+					#@emptyData(totalPage)
+				</div>
+			</div>
+			#@pagination(page,totalPage,path,keyWord,totalPage)
+		</div>
+	</div>
+</div>
+#end
+
+#define articleTable(articleList,page,totalPage,path,placeholder,keyWord)
+<div class="content">
+	<div class="row">
+		<div class="col-md-12">
+			#@searchArea(placeholder,path,keyWord,totalPage)
+			<div class="card">
+				<div class="card-header bg-light">商品列表</div>
+				<div class="card-body">
+					#if(totalPage>0)
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>文章ID</th>
+									<th>文章标题</th>
+									<th>文章内容</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								#for(article : articleList)
+								<tr>
+									<td>#(article.getId())</td>
+									<td class="text-nowrap"><p style="width:100px;">#(article.getArticleTitle())</p></td>
+									<td>
+										<textarea class="form-control" rows="6" readonly="readonly">
+										#(article.getArticleContent())</textarea>
+									</td>
+									<td><a href="/index/articleDelete?id=#(article.getId())"><button type="button" class="btn btn-danger">删除</button></a>
+									<form action="/index/articleForm" method="POST" style="display: inline-block;">
+										<input type="hidden" name="article.id" value="#(article.getId())">
+										<input type="hidden" name="article.articleTitle" value="#(article.getArticleTitle())">
+										<input type="hidden" name="article.articleContent" value="#(article.getArticleContent())">
+										<button type="submit" class="btn btn-primary">修改</button></form></td>
+								</tr>
+								#end
+							</tbody>
+						</table>
+					</div>
+					#end
+					#@emptyData(totalPage)
+				</div>
+			</div>
+			#@pagination(page,totalPage,path,keyWord,totalPage)
+		</div>
+	</div>
+</div>
+#end
+
+#define orderTable(orderBeanList,page,totalPage,path,placeholder,keyWord)
+<div class="content">
+	<div class="row">
+		<div class="col-md-12">
+			#@searchArea(placeholder,path,keyWord,totalPage)
+			<div class="card">
+				<div class="card-header bg-light">商品列表</div>
+				<div class="card-body">
+					#if(totalPage>0)
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>订单ID</th>
+									<th>下单物品类型</th>
+									<th>下单物品</th>
+									<th>下单人信息</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								#for(orderBean : orderBeanList)
+								<tr>
+									<td>#(orderBean.getOrderId())</td>
+									#if(orderBean.getOrderType()==1)
+									<td>商品</td>
+									<td>
+										#set(goods=orderBean.getGoods())
+										#(goods.getGoodsName())<br>
+										#(goods.getGoodsPrice())<br>
+										#(goods.getGoodsType())
+									</td>	
+									#else if(orderBean.getOrderType()==2)
+									<td>服务</td>
+									<td>
+										#set(service=orderBean.getService())
+										#(service.getServiceType())<br>
+										#(service.getMinPrice()) - #(service.getMaxPrice())<br>
+										#(service.getStartTime()) - #(service.getEndTime())
+									</td>
+									#end
+									<td>
+										#set(master=orderBean.getMaster())
+										#(master.getMasterName())<br>
+										#(master.getMasterAddress())<br>
+										#(master.getMasterPhone())
+									</td>
+									#if(orderBean.getOrderType()==1)
+									<td>商品类型订单，不可操作</td>
+									#else if(orderBean.getOrderType()==2)
+										#if(orderBean.getIsAccept()==1)
+											<td><a href="/index/passOrder?id=#(orderBean.getOrderId())"><button type="button" class="btn btn-primary">通过该服务订单</button></a></td>
+										#else if(orderBean.getIsAccept()==2)
+											<td>服务已审核通过</td>
+										#end
+									#end
+								</tr>
+								#end
+							</tbody>
+						</table>
+					</div>
+					#end
+					#@emptyData(totalPage)
+				</div>
+			</div>
+			#@pagination(page,totalPage,path,keyWord,totalPage)
+		</div>
+	</div>
+</div>
+#end
+
+#define petTable(selectionList,page,totalPage,path,phaseList,selectedPhaseNum)
+<div class="content">
+	<div class="row">
+		<div class="col-md-12">
+		#@phaseNumSelector(phaseList,selectedPhaseNum)
+			<div class="card">
+				<div class="card-header bg-light">参选宠物列表</div>
+				<div class="card-body">
+					#if(totalPage>0)
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>宠物名称</th>
+									<th>宠物图片</th>
+									<th>期数</th>
+									<th>票数</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								#set(selectedPhase=null)
+								#for(phase : phaseList)
+									#if(phase.getPhaseNum()==selectedPhaseNum)
+										#set(selectedPhase=phase)
+										#break
+									#end
+								#end
+								#for(selection : selectionList)
+								<tr>
+									<td class="text-nowrap">#(selection.getPetName())</td>
+									<td><img src="#(selection.getPetImg())" class="img-thumbnail" style="width:100px;height:100px;"></td>
+									<td>#(selection.getSelectionTime())</td>
+									<td>#(selection.getPetStar())</td>
+									<td>
+									#if(selectedPhase.getIsEnd()==1)
+									<a href="/index/petDelete?id=#(selection.getId())"><button type="button" class="btn btn-danger">删除</button></a>
+									<form action="/index/petForm" method="POST" style="display: inline-block;">
+										<input type="hidden" name="selection.id" value="#(selection.getId())">
+										<input type="hidden" name="selection.petName" value="#(selection.getPetName())">
+										<input type="hidden" name="selection.petImg" value="#(selection.getPetImg())">
+										<input type="hidden" name="selection.selectionTime" value="#(selection.getSelectionTime())">
+										<button type="submit" class="btn btn-primary">修改</button></form>	
+									#else if(selectedPhase.getIsEnd()==2)
+									该期评选已结束，不可操作
+									#end
+									</td>
+								</tr>
+								#end
+							</tbody>
+						</table>
+					</div>
+					#end
+					#@emptyData(totalPage)
+				</div>
+			</div>
+			#@pagination(page,totalPage,path,selectedPhaseNum,totalPage)
+		</div>
+	</div>
+</div>
+#end

@@ -1,0 +1,135 @@
+Table: order
+-------+------+------+-----+---------+---------
+ Field | Type | Null | Key | Default | Remarks 
+-------+------+------+-----+---------+---------
+-------+------+------+-----+---------+---------
+
+Table: article
+----------------+---------------+------+-----+---------+---------
+ Field          | Type          | Null | Key | Default | Remarks 
+----------------+---------------+------+-----+---------+---------
+ id             | INT(10)       | NO   | PRI |         |         
+ articleTitle   | VARCHAR(255)  | YES  |     |         |         
+ articleContent | VARCHAR(5000) | YES  |     |         |         
+ storeId        | INT(10)       | YES  |     |         |         
+----------------+---------------+------+-----+---------+---------
+
+Table: goods
+------------+---------------+------+-----+---------+---------
+ Field      | Type          | Null | Key | Default | Remarks 
+------------+---------------+------+-----+---------+---------
+ id         | INT(10)       | NO   | PRI |         |         
+ goodsName  | VARCHAR(255)  | YES  |     |         |         
+ goodsPrice | DECIMAL(10,2) | YES  |     |         |         
+ goodsImg   | VARCHAR(255)  | YES  |     |         |         
+ storeId    | INT(10)       | YES  |     |         |         
+ goodsType  | VARCHAR(255)  | YES  |     |         |         
+------------+---------------+------+-----+---------+---------
+
+Table: goodstype
+---------------+--------------+------+-----+---------+---------
+ Field         | Type         | Null | Key | Default | Remarks 
+---------------+--------------+------+-----+---------+---------
+ id            | INT(10)      | NO   | PRI |         |         
+ goodsTypeName | VARCHAR(255) | YES  |     |         |         
+---------------+--------------+------+-----+---------+---------
+
+Table: master
+---------------+--------------+------+-----+---------+---------
+ Field         | Type         | Null | Key | Default | Remarks 
+---------------+--------------+------+-----+---------+---------
+ id            | INT(10)      | NO   | PRI |         |         
+ petName       | VARCHAR(255) | YES  |     |         |         
+ petKind       | VARCHAR(255) | YES  |     |         |         
+ petAge        | INT(10)      | YES  |     |         |         
+ petType       | VARCHAR(255) | YES  |     |         |         
+ petImg        | VARCHAR(255) | YES  |     |         |         
+ masterName    | VARCHAR(255) | YES  |     |         |         
+ masterAddress | VARCHAR(255) | YES  |     |         |         
+ masterPhone   | VARCHAR(255) | YES  |     |         |         
+ userName      | VARCHAR(255) | YES  |     |         |         
+ password      | VARCHAR(255) | YES  |     |         |         
+ vipId         | INT(10)      | YES  |     |         |         
+---------------+--------------+------+-----+---------+---------
+
+Table: orderform
+-----------+---------+------+-----+---------+---------
+ Field     | Type    | Null | Key | Default | Remarks 
+-----------+---------+------+-----+---------+---------
+ id        | INT(10) | NO   | PRI |         |         
+ serviceId | INT(10) | YES  |     |         |         
+ storeId   | INT(10) | YES  |     |         |         
+ isAccept  | INT(10) | YES  |     |         |         
+ masterId  | INT(10) | YES  |     |         |         
+ goodsId   | INT(10) | YES  |     |         |         
+ orderType | INT(10) | YES  |     |         |         
+-----------+---------+------+-----+---------+---------
+
+Table: pettype
+-------------+--------------+------+-----+---------+---------
+ Field       | Type         | Null | Key | Default | Remarks 
+-------------+--------------+------+-----+---------+---------
+ id          | INT(10)      | NO   | PRI |         |         
+ petTypeName | VARCHAR(255) | YES  |     |         |         
+-------------+--------------+------+-----+---------+---------
+
+Table: phase
+----------+---------+------+-----+---------+---------
+ Field    | Type    | Null | Key | Default | Remarks 
+----------+---------+------+-----+---------+---------
+ id       | INT(10) | NO   | PRI |         |         
+ isEnd    | INT(10) | YES  |     |         |         
+ phaseNum | INT(10) | YES  |     |         |         
+ storeId  | INT(10) | YES  |     |         |         
+----------+---------+------+-----+---------+---------
+
+Table: selection
+---------------+--------------+------+-----+---------+---------
+ Field         | Type         | Null | Key | Default | Remarks 
+---------------+--------------+------+-----+---------+---------
+ id            | INT(10)      | NO   | PRI |         |         
+ petName       | VARCHAR(255) | YES  |     |         |         
+ petImg        | VARCHAR(255) | YES  |     |         |         
+ petStar       | INT(10)      | YES  |     | 0       |         
+ selectionTime | INT(10)      | YES  |     |         |         
+ storeId       | INT(10)      | YES  |     |         |         
+---------------+--------------+------+-----+---------+---------
+
+Table: service
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ id          | INT(10)       | NO   | PRI |         |         
+ serviceType | VARCHAR(255)  | YES  |     |         |         
+ minPrice    | DECIMAL(10,2) | YES  |     |         |         
+ maxPrice    | DECIMAL(10,2) | YES  |     |         |         
+ startTime   | VARCHAR(255)  | YES  |     |         |         
+ endTime     | VARCHAR(255)  | YES  |     |         |         
+ storeId     | INT(10)       | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: store
+--------------+--------------+------+-----+---------+---------
+ Field        | Type         | Null | Key | Default | Remarks 
+--------------+--------------+------+-----+---------+---------
+ id           | INT(10)      | NO   | PRI |         |         
+ userName     | VARCHAR(255) | YES  |     |         |         
+ password     | VARCHAR(255) | YES  |     |         |         
+ storeName    | VARCHAR(255) | YES  |     |         |         
+ storeAddress | VARCHAR(255) | YES  |     |         |         
+ phone        | VARCHAR(255) | YES  |     |         |         
+ storeStar    | INT(10)      | YES  |     |         |         
+ storeType    | INT(10)      | YES  |     |         |         
+ qq           | VARCHAR(11)  | YES  |     |         |         
+--------------+--------------+------+-----+---------+---------
+
+Table: vip
+-------+---------------+------+-----+---------+---------
+ Field | Type          | Null | Key | Default | Remarks 
+-------+---------------+------+-----+---------+---------
+ id    | INT(10)       | NO   | PRI |         |         
+ price | DECIMAL(10,2) | YES  |     |         |         
+ desc  | VARCHAR(1000) | YES  |     |         |         
+ name  | VARCHAR(255)  | YES  |     |         |         
+-------+---------------+------+-----+---------+---------
+
